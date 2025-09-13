@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect, useRef } from "react";
 import {
   Play,
@@ -13,8 +12,10 @@ import {
   Menu,
   X,
 } from "lucide-react";
+
 import ReactCountryFlag from "react-country-flag";
 import { Listbox } from "@headlessui/react";
+import API_URL from './config';
 
 // Languages for dropdown
 const languages = [
@@ -33,8 +34,9 @@ export default function Home(): React.ReactElement {
   useEffect(() => {
     const fetchAudioUrls = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/audio/');
+        const response = await fetch(`${API_URL}/api/audio/`);
         const data = await response.json();
+
         setAudioUrls(data);
       } catch (error) {
         console.error('Failed to fetch audio URLs:', error);
